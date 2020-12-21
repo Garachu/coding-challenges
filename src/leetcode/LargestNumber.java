@@ -45,10 +45,6 @@ public class LargestNumber {
                 return XY.compareTo(YX) > 0 ? -1 : 1;
             }
 
-            @Override
-            public boolean equals(Object obj) {
-                return false;
-            }
         });
 
         String str = "";
