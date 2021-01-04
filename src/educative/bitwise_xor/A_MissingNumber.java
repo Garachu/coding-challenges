@@ -3,7 +3,7 @@ package educative.bitwise_xor;
 /**
  * Given an array of n-1n−1 integers in the range from 11 to nn, find the one number that is missing from the array.
  */
-public class MissingNumber {
+public class A_MissingNumber {
 
     /**
      * Time & Space complexity:
@@ -35,6 +35,6 @@ public class MissingNumber {
         // Input: 1, 5, 2, 6, 4
         // Answer: 3
         int[] arr = new int[]{1, 5, 2, 6, 4};
-        System.out.print("Missing number is: " + MissingNumber.findMissingNumber(arr));
+        System.out.print("Missing number is: " + A_MissingNumber.findMissingNumber(arr));
     }
 }

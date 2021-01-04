@@ -6,15 +6,13 @@ public class MergeSortArray {
         int[] arr = new int[]{5, 4, 2, 3, 7, 1};
 
         // print array before sorting
-        System.out.println("array before sorting");
-        printArray(arr);
+//        System.out.println("array before sorting");
+//        printArray(arr);
 
         // sort array
         sortArray(arr, 0, arr.length - 1);
 
         // print array after sorting
-        System.out.println("array after sorting");
-        printArray(arr);
     }
 
     static void sortArray(int[] nums, int lb, int ub) {
@@ -35,7 +33,7 @@ public class MergeSortArray {
         int[] result = new int[(ub - lb) + 1];
         int resultPointer = 0;
 
-        System.out.println("lp: == " + leftPointer + "\t rp: == " + rightPointer + "\t mid: == " + mid);
+        // System.out.println("lp: == " + leftPointer + "\t rp: == " + rightPointer + "\t mid: == " + mid);
 
         while (leftPointer <= mid || rightPointer <= ub) {
             if (leftPointer <= mid && rightPointer <= ub) {
@@ -57,7 +55,7 @@ public class MergeSortArray {
             lb++;
         }
 
-        printArray(nums);
+       // printArray(nums);
     }
 
     static void printArray(int[] nums) {
