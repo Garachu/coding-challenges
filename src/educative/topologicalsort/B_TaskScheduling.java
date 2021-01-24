@@ -1,5 +1,7 @@
 package educative.topologicalsort;
 
+import java.util.*;
+
 /**
  * Problem Statement #
  * There are ‘N’ tasks, labeled from ‘0’ to ‘N-1’. Each task can have some prerequisite tasks which need to be completed before it can be scheduled.
@@ -35,6 +37,50 @@ public class B_TaskScheduling {
     }
 
     static boolean isSchedulingPossible(int num, int[][] tasks) {
+        List<Integer> sortedOrder = new ArrayList<>();
+
+        // a. Initialize the graph
+        HashMap<Integer, Integer> vertexIndegree = new HashMap<>();
+        HashMap<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < num; i++) {
+            vertexIndegree.put(i, 0);
+            graph.put(i, new ArrayList<>());
+        }
+
+        // b. Build the graph
+        for (int i = 0; i < tasks.length; i++) {
+            int parent = tasks[i][0];
+            int child = tasks[i][1];
+
+            graph.get(parent).add(child);
+            vertexIndegree.put(child, vertexIndegree.get(child) + 1);
+        }
+
+        // c. Find all sources i.e., all vertices with 0 in-degree
+        Queue<Integer> sources = new LinkedList<>();
+        for (Map.Entry<Integer, Integer> entry : vertexIndegree.entrySet()) {
+            if (entry.getValue() == 0) {
+                sources.add(entry.getKey());
+            }
+        }
+
+        // d. For each source, add it to the sortedOrder and subtract one from all of its children's in-degrees
+        // if a child's in-degree becomes zero, add it to the sources queu
+        while (!sources.isEmpty()) {
+            Integer poll = sources.poll();
+            sortedOrder.add(poll);
+            List<Integer> children = graph.get(poll);
+            for (Integer child : children) {
+                vertexIndegree.put(child, vertexIndegree.get(child) - 1);
+                if (vertexIndegree.get(child) == 0) {
+                    sources.add(child);
+                }
+            }
+        }
+
+        if (sortedOrder.size() != num - 1) // topological sort is not possible as the graph has a cycle
+            return false;
+
         return true;
     }
 }
